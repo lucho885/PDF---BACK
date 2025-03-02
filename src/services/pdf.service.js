@@ -4,7 +4,12 @@ const generateStyle1Html = require("../templates/styles1");
 class PdfService {
   async generatePdfFromData(userData) {
     try {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        headless: "new",
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      });
+      
       const page = await browser.newPage();
 
       const contentHtml = generateStyle1Html(userData) 
