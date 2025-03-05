@@ -5,7 +5,6 @@ class PdfService {
   async generatePdfFromData(userData) {
     try {
       const browser = await puppeteer.launch({
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome-stable", // Ruta del navegador en Render
         headless: "new", // Para evitar problemas de compatibilidad
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
